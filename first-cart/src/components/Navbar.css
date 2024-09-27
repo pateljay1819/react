@@ -1,0 +1,97 @@
+/* Navbar.css */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1c1c1c;  /* Dark background for a sleek look */
+    padding: 15px 20px;
+    color: #f5f5f5;  /* Light text for good contrast */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);  /* Subtle shadow for depth */
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #8b74af;  /* Bright accent color for the logo */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin: 0 20px;  /* Increased spacing for better readability */
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #f5f5f5;  /* Light text color */
+    font-size: 18px;
+    transition: color 0.3s, transform 0.3s;  /* Added transform for hover effect */
+}
+
+.nav-links a:hover {
+    color: #61dafb;  /* Highlight color on hover */
+    transform: scale(1.05);  /* Slight scaling effect on hover */
+}
+
+.search-cart {
+    display: flex;
+    align-items: center;
+}
+
+.search-cart input {
+    padding: 8px;  /* Increased padding for better usability */
+    border: none;
+    border-radius: 20px;  /* Rounded corners for a modern look */
+    margin-right: 10px;  /* Space between input and cart icon */
+    background-color: #2a2a2a;  /* Dark background for the input */
+    color: #f5f5f5;  /* Light text color in the input */
+}
+
+.search-cart input::placeholder {
+    color: #888;  /* Placeholder color */
+}
+
+.cart-icon {
+    font-size: 24px;
+    color: #61dafb;  /* Consistent color with the logo */
+    text-decoration: none;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #f5f5f5;  /* Light color for the menu icon */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        background-color: #1c1c1c;  /* Match background color */
+        width: 100%;
+        top: 60px;
+        left: 0;
+        padding: 10px 0;  /* Padding for the dropdown */
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+}
