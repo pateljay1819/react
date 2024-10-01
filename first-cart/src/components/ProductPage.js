@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import './HomePage.css';
+import './ProductPage.css';
 import iphoneImage from '../assets/iphone16.jpg';
 import samsungImage from '../assets/samsungS24.jpg';
+import samsungImage1 from '../assets/sams24ultra.jpeg';
 
 const productsData = [
     {
@@ -18,6 +19,13 @@ const productsData = [
         image: samsungImage,
         description: "Samsung's newest flagship phone with a vibrant display, powerful processor, and versatile camera setup."
     },
+    {
+      id: 3,
+      name: 'Samsung S24 Ultra',
+      price: 170000,
+      image: samsungImage1,
+      description: "Samsung's newest flagship phone with a vibrant display, powerful processor, and versatile camera setup."
+  },
 ];
 
 const HomePage = () => {
