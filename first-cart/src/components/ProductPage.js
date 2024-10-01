@@ -1,6 +1,9 @@
+// HomePage.js
 import React, { useState } from 'react';
-import './ProductPage.css';
+import { Link, useNavigate } from 'react-router-dom';
+import './HomePage.css';
 import iphoneImage from '../assets/iphone16.jpg';
+import iphoneImage1 from '../assets/iphone15.jpg';
 import samsungImage from '../assets/samsungS24.jpg';
 import samsungImage1 from '../assets/sams24ultra.jpeg';
 
@@ -14,27 +17,36 @@ const productsData = [
     },
     {
         id: 2,
+        name: "iPhone 15 Plus",
+        price: 72000,
+        image: iphoneImage1  ,
+        description: "The latest iPhone with stunning display, advanced camera features, and A16 Bionic chip for super-fast performance."
+    },
+    {
+        id: 3,
         name: 'Samsung S24',
         price: 70000,
         image: samsungImage,
         description: "Samsung's newest flagship phone with a vibrant display, powerful processor, and versatile camera setup."
     },
     {
-      id: 3,
-      name: 'Samsung S24 Ultra',
-      price: 170000,
-      image: samsungImage1,
-      description: "Samsung's newest flagship phone with a vibrant display, powerful processor, and versatile camera setup."
-  },
+        id: 4,
+        name: 'Samsung S24 Ultra',
+        price: 170000,
+        image: samsungImage1,
+        description: "Samsung's newest flagship phone with a vibrant display, powerful processor, and versatile camera setup."
+    },
 ];
 
 const HomePage = () => {
     const [cart, setCart] = useState([]);
     const [showDescriptions, setShowDescriptions] = useState(Array(productsData.length).fill(false));
+    const navigate = useNavigate(); // Hook for navigation
 
     const addToCart = (product) => {
         setCart([...cart, product]);
         alert(`${product.name} added to cart!`);
+        navigate('/cart'); // Redirect to the cart page
     };
 
     const buyNow = (product) => {
@@ -49,7 +61,7 @@ const HomePage = () => {
 
     return (
         <div className="homepage">
-            <h1 className="title">Welcome to MyStore!</h1>
+            {/* <h1 className="title">Welcome to MyStore!</h1> */}
             <div className="product-list">
                 {productsData.map((product, index) => (
                     <div className="product-card" key={product.id}>

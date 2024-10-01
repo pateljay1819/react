@@ -1,46 +1,44 @@
 /* Navbar.css */
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
 
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #1c1c1c;  /* Dark background for a sleek look */
-    padding: 15px 20px;
-    color: #f5f5f5;  /* Light text for good contrast */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);  /* Subtle shadow for depth */
+    padding: 10px 20px;
+    background-color: #2c3e50; /* Dark background */
+    color: white;
 }
 
 .logo {
     font-size: 24px;
     font-weight: bold;
-    color: #8b74af;  /* Bright accent color for the logo */
 }
 
 .nav-links {
     list-style: none;
     display: flex;
-    margin: 0;
-    padding: 0;
+    transition: max-height 0.3s ease-in;
 }
 
 .nav-links li {
-    margin: 0 20px;  /* Increased spacing for better readability */
+    margin: 0 15px;
 }
 
 .nav-links a {
     text-decoration: none;
-    color: #f5f5f5;  /* Light text color */
-    font-size: 18px;
-    transition: color 0.3s, transform 0.3s;  /* Added transform for hover effect */
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
 }
 
 .nav-links a:hover {
-    color: #61dafb;  /* Highlight color on hover */
-    transform: scale(1.05);  /* Slight scaling effect on hover */
+    background-color: #34495e; /* Slightly lighter on hover */
+}
+
+.show {
+    display: flex;
+    flex-direction: column; /* Stacks links vertically in mobile view */
 }
 
 .search-cart {
@@ -49,49 +47,39 @@ body {
 }
 
 .search-cart input {
-    padding: 8px;  /* Increased padding for better usability */
+    padding: 5px;
     border: none;
-    border-radius: 20px;  /* Rounded corners for a modern look */
-    margin-right: 10px;  /* Space between input and cart icon */
-    background-color: #2a2a2a;  /* Dark background for the input */
-    color: #f5f5f5;  /* Light text color in the input */
-}
-
-.search-cart input::placeholder {
-    color: #888;  /* Placeholder color */
+    border-radius: 4px;
+    margin-right: 10px;
 }
 
 .cart-icon {
     font-size: 24px;
-    color: #61dafb;  /* Consistent color with the logo */
     text-decoration: none;
+    color: white;
 }
 
 .menu-toggle {
     display: none;
-    font-size: 28px;
+    font-size: 24px;
     cursor: pointer;
-    color: #f5f5f5;  /* Light color for the menu icon */
 }
 
-/* Responsive styles */
+/* Responsive Styles */
 @media (max-width: 768px) {
     .nav-links {
-        display: none;
-        flex-direction: column;
+        display: none; /* Hide links by default on mobile */
         position: absolute;
-        background-color: #1c1c1c;  /* Match background color */
-        width: 100%;
         top: 60px;
-        left: 0;
-        padding: 10px 0;  /* Padding for the dropdown */
-    }
-
-    .nav-links.show {
-        display: flex;
+        right: 20px;
+        background-color: #2c3e50;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        max-height: 0;
+        overflow: hidden;
     }
 
     .menu-toggle {
-        display: block;
+        display: block; /* Show menu toggle on mobile */
     }
 }

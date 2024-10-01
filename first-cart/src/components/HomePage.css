@@ -1,34 +1,78 @@
 /* HomePage.css */
 
-.homepage {
-    padding: 20px;
-    text-align: center;
-    background-color: #f0f0f0; /* Light background for the page */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
 }
 
-.title {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-    color: #333; /* Darker title color */
+
+
+.homepage {
+    display: flex;
+    flex-direction: column;
 }
+
+.hero {
+    
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 100px 20px; /* Adjust padding as needed */
+}
+
+.hero-content {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5); /* Optional: Add a translucent background */
+    border-radius: 10px;
+}
+
+.shop-now {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 15px 30px;
+    background-color: #61dafb;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.shop-now-button {
+    display: inline-block;
+    padding: 15px 30px; /* Adjust padding as needed */
+    font-size: 18px; /* Font size */
+    color: white; /* Text color */
+    background-color: #61dafb; /* Button background color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    text-decoration: none; /* Remove underline */
+    transition: background-color 0.3s; /* Transition effect */
+}
+
+.shop-now-button:hover {
+    background-color: #21a1f1; /* Darker shade on hover */
+}
+
 
 .product-list {
     display: flex;
-    justify-content: center; /* Center align the product cards */
+    justify-content: space-around;
     flex-wrap: wrap;
     margin-top: 20px;
-    gap: 20px; /* Space between product cards */
 }
 
 .product-card {
     border: 1px solid #ddd;
     border-radius: 10px;
-    padding: 15px;
+    padding: 10px;
     margin: 10px;
-    width: 240px; /* Slightly wider card */
+    width: 200px;
     text-align: center;
-    background-color: #ffffff; /* White background for cards */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    background-color: #f9f9f9;
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
@@ -39,88 +83,26 @@
 
 .product-card img {
     width: 100%;
-    height: auto; /* Maintain aspect ratio */
     border-radius: 10px;
-    margin-bottom: 10px; /* Space between image and text */
 }
 
-.product-name {
-    font-size: 1.5em; /* Larger font for product name */
-    color: #444; /* Darker color for product name */
-    margin: 10px 0;
-}
-
-.product-price {
-    font-size: 1.2em;
-    color: #28a745; /* Green color for price */
-    margin: 5px 0 10px; /* Space around price */
-}
-
-.toggle-button {
-    background-color: #007bff; /* Blue color for toggle button */
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.toggle-button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-}
-
-.product-description {
-    font-size: 0.9em; /* Smaller font for description */
-    color: #666; /* Gray color for description text */
-    margin: 10px 0;
-}
-
-.button-group {
-    display: flex;
-    justify-content: space-between; /* Space buttons evenly */
+.product-card button {
     margin-top: 10px;
-}
-
-.add-to-cart-button,
-.buy-now-button {
-    flex: 1; /* Equal width buttons */
-    margin: 0 5px; /* Space between buttons */
     padding: 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    background-color: #61dafb; /* Accent color for buttons */
     color: white;
     transition: background-color 0.3s;
 }
 
-.add-to-cart-button {
-    background-color: #61dafb; /* Accent color for Add to Cart */
-}
-
-.add-to-cart-button:hover {
+.product-card button:hover {
     background-color: #21a1f1; /* Darker shade on hover */
 }
 
-.buy-now-button {
-    background-color:rgb(53, 220, 217); /* Red color for Buy Now */
+.product-description {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #555; /* Slightly darker color for description */
 }
-
-.buy-now-button:hover {
-    background-color: rgb(53, 220, 217); /* Darker red on hover */
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    .product-list {
-        flex-direction: column; /* Stack products vertically on small screens */
-        align-items: center; /* Center align */
-    }
-
-    .product-card {
-        width: 90%; /* Full width on smaller screens */
-    }
-}
-
-
-
