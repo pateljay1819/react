@@ -1,15 +1,22 @@
-import React from 'react';
-import './ContactPage.css'; // Import the CSS file for styling
+import React, { useEffect } from 'react';
+import './ContactPage.css';
 
 const ContactPage = () => {
+  useEffect(() => {
+    console.log("ContactPage component mounted");
+    return () => {
+      console.log("ContactPage component unmounted");
+    };
+  }, []);
+
   return (
-    <div className="about-us-container">
+    <div className="contact-us-container">
       <section className="hero-section">
         <h1>About Us</h1>
         <p>Welcome to Our Company! We strive to deliver the best products and services to our customers.</p>
       </section>
 
-      <section className="mission-section">
+      <section className="mission-section" style={{ textAlign: 'center' }}>
         <h2>Our Mission</h2>
         <p>Our mission is to empower businesses with innovative solutions and create lasting impacts in the industry.</p>
       </section>

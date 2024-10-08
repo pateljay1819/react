@@ -6,7 +6,10 @@ import ProductPage from './components/ProductPage';
 import LoginPage from './components/LoginPage';
 import ContactPage from './components/ContactPage';
 import Signup from './components/Signup';
-import Cart from './components/cart';
+import Cart from './components/Cart';
+import Counter from './components/Counter';
+
+
 
 function App() {
   // const [cart, setCart] = useState([]);
@@ -19,10 +22,11 @@ function App() {
           <Route path="/productpage" element={<ProductPage />} />
           <Route path="/LoginPage" element={<LoginPage />} />
           <Route path="/ContactPage" element={<ContactPage />} />
-          {/* <Route path="/" element={<HomePage cart={cart} setCart={setCart} />} />
-          <Route path="/cart" element={<Cart cart={cart} />} /> */}
+          <Route path="/cart" element={<Cart />} />
           <Route path="/Signup" element={<Signup />} />
+          <Route path="/Counter" element={<Counter />} />
         </Routes>
+        
       </main>
     </Router>
   );

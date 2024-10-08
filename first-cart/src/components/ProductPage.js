@@ -1,7 +1,6 @@
-// HomePage.js
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import './HomePage.css';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './ProductPage.css';
 import iphoneImage from '../assets/iphone16.jpg';
 import iphoneImage1 from '../assets/iphone15.jpg';
 import samsungImage from '../assets/samsungS24.jpg';
@@ -19,7 +18,7 @@ const productsData = [
         id: 2,
         name: "iPhone 15 Plus",
         price: 72000,
-        image: iphoneImage1  ,
+        image: iphoneImage1,
         description: "The latest iPhone with stunning display, advanced camera features, and A16 Bionic chip for super-fast performance."
     },
     {
@@ -38,15 +37,31 @@ const productsData = [
     },
 ];
 
-const HomePage = () => {
+const ProductPage = () => {
     const [cart, setCart] = useState([]);
     const [showDescriptions, setShowDescriptions] = useState(Array(productsData.length).fill(false));
-    const navigate = useNavigate(); // Hook for navigation
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+        setCart(storedCart);
+    }, []);
 
     const addToCart = (product) => {
-        setCart([...cart, product]);
+        const existingProduct = cart.find(item => item.id === product.id);
+        let updatedCart;
+        
+        if (existingProduct) {
+            existingProduct.quantity += 1; // Increment quantity if already in cart
+            updatedCart = [...cart];
+        } else {
+            updatedCart = [...cart, { ...product, quantity: 1 }];
+        }
+
+        setCart(updatedCart);
+        localStorage.setItem('cart', JSON.stringify(updatedCart));
         alert(`${product.name} added to cart!`);
-        navigate('/cart'); // Redirect to the cart page
+        navigate('/cart');
     };
 
     const buyNow = (product) => {
@@ -61,7 +76,6 @@ const HomePage = () => {
 
     return (
         <div className="homepage">
-            {/* <h1 className="title">Welcome to MyStore!</h1> */}
             <div className="product-list">
                 {productsData.map((product, index) => (
                     <div className="product-card" key={product.id}>
@@ -92,4 +106,4 @@ const HomePage = () => {
     );
 };
 
-export default HomePage;
+export default ProductPage;

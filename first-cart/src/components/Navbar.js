@@ -19,6 +19,7 @@ const Navbar = ({ cartCount }) => { // Accept cartCount as a prop
                 <li><Link to="/contactpage">Contact Us</Link></li>
                 <li><Link to="/loginpage">Login</Link></li>
                 <li><Link to="/signup">Signup</Link></li>
+                <li><Link to="/Counter">Counter</Link></li>
             </ul>
             <div className="search-cart">
                 <input type="text" placeholder="Search..." />

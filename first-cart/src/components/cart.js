@@ -1,102 +1,72 @@
-// Cart.js
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './CartPage.css'; // CSS file for styling
 
-const Cart = ({ cart }) => {
-    const styles = {
-        cart: {
-            maxWidth: '600px',
-            margin: '20px auto',
-            padding: '20px',
-            border: '1px solid #ccc',
-            borderRadius: '8px',
-            backgroundColor: '#f9f9f9',
-            boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
-        },
-        header: {
-            textAlign: 'center',
-            color: '#333',
-        },
-        emptyMessage: {
-            textAlign: 'center',
-            color: '#777',
-        },
-        list: {
-            listStyleType: 'none',
-            padding: '0',
-        },
-        listItem: {
-            display: 'flex',
-            alignItems: 'center',
-            margin: '15px 0',
-            padding: '10px',
-            borderBottom: '1px solid #eaeaea',
-        },
-        productImage: {
-            width: '60px',
-            height: '60px',
-            objectFit: 'cover',
-            marginRight: '15px',
-        },
-        productName: {
-            margin: '0',
-            fontSize: '1.2em',
-            color: '#333',
-        },
-        productPrice: {
-            margin: '5px 0 0',
-            color: '#555',
-        },
-        link: {
-            display: 'block',
-            textAlign: 'center',
-            marginTop: '20px',
-            padding: '10px 15px',
-            backgroundColor: '#007bff',
-            color: 'white',
-            textDecoration: 'none',
-            borderRadius: '4px',
-            transition: 'background-color 0.3s',
-        },
-        linkHover: {
-            backgroundColor: '#0056b3',
-        },
-    };
+const Cart = () => {
+  const [cart, setCart] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const navigate = useNavigate();
 
-    return (
-        <div style={styles.cart}>
-            <h1 style={styles.header}>Your Cart</h1>
-            {cart.length === 0 ? (
-                <p style={styles.emptyMessage}>Your cart is empty!</p>
-            ) : (
-                <ul style={styles.list}>
-                    {cart.map((product, index) => (
-                        <li key={index} style={styles.listItem}>
-                            <img
-                                src={product.image}
-                                alt={product.name}
-                                style={styles.productImage}
-                            />
-                            <div>
-                                <h2 style={styles.productName}>{product.name}</h2>
-                                <p style={styles.productPrice}>
-                                    Price: ₹{product.price.toLocaleString()}
-                                </p>
-                            </div>
-                        </li>
-                    ))}
-                </ul>
-            )}
-            <Link
-                to="/"
-                style={styles.link}
-                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = styles.linkHover.backgroundColor)}
-                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = styles.link.backgroundColor)}
-            >
-                Go back to Home
-            </Link>
-        </div>
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+    setCart(storedCart);
+  }, []);
+
+  useEffect(() => {
+    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    setTotalPrice(total);
+  }, [cart]);
+
+  const updateQuantity = (id, amount) => {
+    setCart((prevCart) =>
+      prevCart.map((item) =>
+        item.id === id
+          ? { ...item, quantity: Math.max(1, item.quantity + amount) }
+          : item
+      )
     );
+  };
+
+  const removeFromCart = (id) => {
+    const updatedCart = cart.filter((item) => item.id !== id);
+    setCart(updatedCart);
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+  };
+
+  const handleCheckout = () => {
+    alert('Proceeding to Checkout');
+    navigate('/checkout');
+  };
+
+  return (
+    <div className="cart-page">
+      <h2>Your Cart</h2>
+
+      {cart.length === 0 ? (
+        <p>Your cart is empty. <a href="/">Go shopping!</a></p>
+      ) : (
+        <div className="cart-items">
+          {cart.map((product) => (
+            <div className="cart-item" key={product.id}>
+              <img src={product.image} alt={product.name} className="cart-item-image" />
+              <div className="cart-item-details">
+                <h3>{product.name}</h3>
+                <p>₹{product.price.toLocaleString()} x {product.quantity}</p>
+                <p>Subtotal: ₹{(product.price * product.quantity).toLocaleString()}</p>
+                <div className="cart-item-actions">
+                  <button onClick={() => updateQuantity(product.id, -1)}>-</button>
+                  <button onClick={() => updateQuantity(product.id, 1)}>+</button>
+                  <button onClick={() => removeFromCart(product.id)}>Remove</button>
+                </div>
+              </div>
+            </div>
+          ))}
+          <h3>Total Price: ₹{totalPrice.toLocaleString()}</h3>
+          <button onClick={handleCheckout}>Checkout</button>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default Cart;
